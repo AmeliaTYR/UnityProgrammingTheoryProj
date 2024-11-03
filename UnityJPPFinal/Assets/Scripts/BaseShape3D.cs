@@ -7,10 +7,15 @@ using UnityEngine;
 public abstract class BaseShape3D : MonoBehaviour
 {
     protected float speed = 10;
-    protected float health = 5;
 
-
-    public float Speed { get => speed; set => speed = value; }
+    public float Speed
+    {
+        get { return speed; }
+        set
+        {
+            speed = Mathf.Clamp(value, 0f, 100f); 
+        }
+    }
 
     protected Rigidbody rigidbody;
     [SerializeField] protected Vector3 direction = Vector3.zero;
@@ -52,8 +57,6 @@ public abstract class BaseShape3D : MonoBehaviour
             UpdateRandomDirection();
         }
         rigidbody.velocity = direction * speed;
-
-        // rigidbody.AddForce(direction * Speed, ForceMode.VelocityChange);
     }
 
     protected Vector3 GetRandomDirection()
