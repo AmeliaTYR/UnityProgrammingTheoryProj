@@ -7,14 +7,14 @@ using UnityEngine;
 public abstract class BaseShape3D : MonoBehaviour
 {
     protected float speed = 10;
-    
+
     // ENCAPSULATION: Speed value is encapsulated
     public float Speed
     {
         get { return speed; }
         set
         {
-            speed = Mathf.Clamp(value, 0f, 100f); 
+            speed = Mathf.Clamp(value, 0f, 100f);
         }
     }
 
@@ -38,6 +38,7 @@ public abstract class BaseShape3D : MonoBehaviour
         UpdateMovement();
     }
 
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         if (!Application.isPlaying) return;
@@ -50,6 +51,7 @@ public abstract class BaseShape3D : MonoBehaviour
         Handles.color = Color.red;
         Handles.ArrowHandleCap(0, position, Quaternion.LookRotation(velocity), arrowLength, EventType.Repaint);
     }
+#endif
 
     protected void UpdateMovement()
     {
@@ -69,7 +71,7 @@ public abstract class BaseShape3D : MonoBehaviour
             UnityEngine.Random.value - 0.5f
         );
     }
-    
+
     protected void UpdateRandomDirection()
     {
         direction = GetRandomDirection();
