@@ -11,11 +11,12 @@ public abstract class BaseShape3D : MonoBehaviour
 
 
     public float Speed { get => speed; set => speed = value; }
-    public float Health { get => health; set => health = value; }
 
     protected Rigidbody rigidbody;
     [SerializeField] protected Vector3 direction = Vector3.zero;
     private float arrowLength = 1;
+
+    public bool entityDestroyed = false;
 
     void Start()
     {
@@ -71,6 +72,11 @@ public abstract class BaseShape3D : MonoBehaviour
         direction = direction.normalized;
     }
 
+    public virtual void ActionOnCollision(Collision collision)
+    {
+        // Do nothing
+    }
+
     protected void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Wall") || collision.collider.CompareTag("Entity"))
@@ -81,6 +87,8 @@ public abstract class BaseShape3D : MonoBehaviour
 
             rigidbody.velocity = direction * speed;
         }
+
+        ActionOnCollision(collision);
     }
 
     protected void OnMouseDown()
