@@ -7,7 +7,8 @@ using UnityEngine;
 public abstract class BaseShape3D : MonoBehaviour
 {
     protected float speed = 10;
-
+    
+    // ENCAPSULATION: Speed value is encapsulated
     public float Speed
     {
         get { return speed; }
@@ -56,9 +57,10 @@ public abstract class BaseShape3D : MonoBehaviour
         {
             UpdateRandomDirection();
         }
-        rigidbody.velocity = direction * speed;
+        rigidbody.velocity = direction * Speed;
     }
 
+    // ABSTRACTION: abstract generation of random direction for object to move
     protected Vector3 GetRandomDirection()
     {
         return new Vector3(
@@ -67,7 +69,7 @@ public abstract class BaseShape3D : MonoBehaviour
             UnityEngine.Random.value - 0.5f
         );
     }
-
+    
     protected void UpdateRandomDirection()
     {
         direction = GetRandomDirection();
@@ -88,7 +90,7 @@ public abstract class BaseShape3D : MonoBehaviour
             direction.y = 0;
             direction = direction.normalized;
 
-            rigidbody.velocity = direction * speed;
+            rigidbody.velocity = direction * Speed;
         }
 
         ActionOnCollision(collision);

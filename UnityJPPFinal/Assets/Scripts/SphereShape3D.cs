@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// INHERITANCE: SphereShape3D inherits from BaseShape3D
 public class SphereShape3D : BaseShape3D
 {
     public ParticleSystem collisionEffect;
@@ -20,6 +21,7 @@ public class SphereShape3D : BaseShape3D
         UpdateMovement();
     }
 
+    // POLYMORPHISM: Different shape behave differently on collision        
     public override void ActionOnCollision(Collision collision)
     {
         if (!collision.collider.CompareTag("Entity"))

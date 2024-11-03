@@ -56,6 +56,7 @@ public class EntitySpawner : MonoBehaviour
         spawnCountLabel.text = "Entities Spawned: " + entitiesSpawned;
     }
 
+    // ABSTRACTION: Abstract shape color randomization
     private void RandomizeShapeColor(GameObject newShapeObj)
     {
         // Set color
@@ -79,7 +80,7 @@ public class EntitySpawner : MonoBehaviour
     {
         Vector3 spawnPos = Random.insideUnitCircle * 40;
         spawnPos.z = spawnPos.y;
-        spawnPos.y = transform.position.y + Random.Range(-5f, 5f);
+        spawnPos.y = transform.position.y + Random.Range(-10f, 10f);
 
         return spawnPos;
     }
