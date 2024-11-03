@@ -4,15 +4,28 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private bool isPaused = false;
+    public void TogglePause()
     {
-        
+        if (isPaused)
+        {
+            ResumeGame();
+        }
+        else
+        {
+            PauseGame();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void PauseGame()
     {
-        
+        Time.timeScale = 0; // Pause the game
+        isPaused = true;
+    }
+
+    private void ResumeGame()
+    {
+        Time.timeScale = 1; // Resume the game
+        isPaused = false;
     }
 }
